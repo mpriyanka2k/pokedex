@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/core/themes/app_colors.dart' as AppColors;
+import 'package:pokedex/core/theme/app_colors.dart' as AppColors;
 
 class AppTheme {
-
-
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
-    colorScheme: 
-    
-    ColorScheme.light(
+    colorScheme: ColorScheme.light(
       primary: AppColors.light.primary,
       primaryContainer: AppColors.light.primaryVariant,
       secondary: AppColors.light.secondary,
       background: AppColors.light.background,
       surface: AppColors.light.surface,
       error: AppColors.light.error,
-      
-      
-    
     ),
 
     scaffoldBackgroundColor: AppColors.light.background,
@@ -29,8 +22,7 @@ class AppTheme {
       foregroundColor: AppColors.light.textPrimary,
     ),
 
-      inputDecorationTheme: InputDecorationTheme(
-      
+    inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.light.card,
       border: OutlineInputBorder(
@@ -42,6 +34,7 @@ class AppTheme {
         borderSide: BorderSide(color: AppColors.light.card, width: 2),
       ),
     ),
+    extensions: [AppColors.light],
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -64,7 +57,7 @@ class AppTheme {
       backgroundColor: AppColors.dark.background,
       foregroundColor: AppColors.dark.textPrimary,
     ),
-     inputDecorationTheme: InputDecorationTheme(
+    inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.dark.card,
       border: OutlineInputBorder(
@@ -76,7 +69,6 @@ class AppTheme {
         borderSide: BorderSide(color: AppColors.dark.card, width: 2),
       ),
     ),
+    extensions: [AppColors.dark],
   );
-
-  
 }

@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:pokedex/core/themes/app_colors.dart';
+import 'package:pokedex/core/theme/app_colors.dart';
 
 extension ThemeX on BuildContext {
   AppColors get colors =>
