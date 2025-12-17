@@ -19,6 +19,7 @@ class PokedexNotifier extends StateNotifier<PokedexState> {
   final NetworkInfo networkInfo;
   final Ref ref;
 
+
   PokedexNotifier(
     this.pokedexListUsecases,
     this.savePokemonsUsecase,
@@ -46,6 +47,8 @@ class PokedexNotifier extends StateNotifier<PokedexState> {
     );
     
   }
+
+  final data = 0;
 
   Future<void> getPokemonListData() async {
     state = PokedexState(loading: true);
@@ -91,3 +94,4 @@ class PokedexNotifier extends StateNotifier<PokedexState> {
    clearHiveDatabaseUsecase.clearHiveDatabase();
   }
 }
+

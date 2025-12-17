@@ -3,35 +3,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pokedex/features/pokedex/presentation/riverpod/pokedexDetail/pokedex_detail_provider.dart';
 import 'package:pokedex/l10n/app_localizations.dart';
-class PokedexDetailScreen extends ConsumerStatefulWidget {
+class PokedexDetailScreen extends ConsumerWidget {
   final String id;
 
   const PokedexDetailScreen({
     super.key,
     required this.id,
-  });
-
+  }); 
   @override
-  ConsumerState<PokedexDetailScreen> createState() =>
-      _PokedexDetailScreenState();
-}
-
-class _PokedexDetailScreenState
-    extends ConsumerState<PokedexDetailScreen> {
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref
-          .read(pokedexDetailProvider.notifier)
-          .getPokedexDetail(widget.id);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final state = ref.watch(pokedexDetailProvider);
+  Widget build(BuildContext context,WidgetRef ref) {
+    final state = ref.watch(pokedexDetailProvider(id));
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
@@ -135,7 +116,7 @@ class _PokedexDetailScreenState
 
                       _InfoTile(
                         label: AppLocalizations.of(context)!.pokedexID,
-                        value: widget.id,
+                        value: id,
                       ),
                     ],
                   ),
@@ -147,6 +128,8 @@ class _PokedexDetailScreenState
       ),
     );
   }
+
+
 }
 
 /// ---------- INFO TILE ----------

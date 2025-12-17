@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pokedex/core/theme/theme_notifier.dart';
+import 'package:pokedex/core/themes/theme_notifier.dart';
 import 'package:pokedex/features/auth/presentation/riverpod/auth_notifire.dart';
 import 'package:pokedex/features/auth/presentation/riverpod/auth_provider.dart';
 import 'package:pokedex/features/pokedex/presentation/riverpod/pokedex/pokedex_notifire.dart';
@@ -18,9 +18,6 @@ class PokedexListScreen extends ConsumerWidget {
     final authNotifier = ref.read(authProvider.notifier);
     final pokedexNotifire = ref.read(pokedexProvider.notifier);
     final pokedexState = ref.watch(pokedexProvider);
-
-    final themeController = ref.read(themeNotifierProvider.notifier);
-    final appLocaleController = ref.read(appLocalNotifireProvider.notifier);
 
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
@@ -41,13 +38,13 @@ class PokedexListScreen extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () {
-              _showLanguageChangeDialog(context, appLocaleController);
+              _showLanguageChangeDialog(context);
             },
             icon: Icon(Icons.language),
           ),
           IconButton(
             onPressed: () {
-              _showThemeChangeDialog(context, themeController);
+              _showThemeChangeDialog(context);
             },
             icon: Icon(Icons.color_lens),
           ),
@@ -200,7 +197,6 @@ class PokedexListScreen extends ConsumerWidget {
 
   void _showThemeChangeDialog(
     BuildContext context,
-    ThemeNotifier themeController,
   ) {
     final theme = Theme.of(context);
 
@@ -219,6 +215,7 @@ class PokedexListScreen extends ConsumerWidget {
         content: Consumer(
           builder: (context, ref, _) {
             final mode = ref.watch(themeNotifierProvider);
+            final themeController = ref.read(themeNotifierProvider.notifier);
 
             return Column(
               mainAxisSize: MainAxisSize.min,
@@ -228,7 +225,7 @@ class PokedexListScreen extends ConsumerWidget {
                   value: ThemeMode.system,
                   groupValue: mode,
                   onChanged: (_) {
-                    ref.read(themeNotifierProvider.notifier).setSystem();
+                    themeController.setSystem();
                     context.pop();
                   },
                 ),
@@ -237,7 +234,7 @@ class PokedexListScreen extends ConsumerWidget {
                   value: ThemeMode.light,
                   groupValue: mode,
                   onChanged: (_) {
-                    ref.read(themeNotifierProvider.notifier).setLight();
+                    themeController.setLight();
                     context.pop();
                   },
                 ),
@@ -246,7 +243,7 @@ class PokedexListScreen extends ConsumerWidget {
                   value: ThemeMode.dark,
                   groupValue: mode,
                   onChanged: (_) {
-                    ref.read(themeNotifierProvider.notifier).setDark();
+                    themeController.setDark();
                     context.pop();
                   },
                 ),
@@ -260,9 +257,9 @@ class PokedexListScreen extends ConsumerWidget {
 
   void _showLanguageChangeDialog(
     BuildContext context,
-    AppLocalNotifire appLocaleController,
   ) {
     final theme = Theme.of(context);
+    
 
     showDialog(
       context: context,
@@ -279,6 +276,7 @@ class PokedexListScreen extends ConsumerWidget {
         content: Consumer(
           builder: (context, ref, _) {
             final selectedLocale = ref.watch(appLocalNotifireProvider);
+            final appLocaleController = ref.read(appLocalNotifireProvider.notifier);
 
             return Column(
               mainAxisSize: MainAxisSize.min,
@@ -288,7 +286,7 @@ class PokedexListScreen extends ConsumerWidget {
                   value: AppLocale.english,
                   groupValue: selectedLocale,
                   onChanged: (value) {
-                    ref.read(appLocalNotifireProvider.notifier).english();
+                    appLocaleController.english();
                     context.pop();
                   },
                 ),
@@ -297,7 +295,7 @@ class PokedexListScreen extends ConsumerWidget {
                   value: AppLocale.hindi,
                   groupValue: selectedLocale,
                   onChanged: (value) {
-                    ref.read(appLocalNotifireProvider.notifier).hindi();
+                    appLocaleController.hindi();
                     context.pop();
                   },
                 ),
@@ -307,7 +305,7 @@ class PokedexListScreen extends ConsumerWidget {
                   value: AppLocale.spanish,
                   groupValue: selectedLocale,
                   onChanged: (value) {
-                    ref.read(appLocalNotifireProvider.notifier).spanish();
+                   appLocaleController.spanish();
                     context.pop();
                   },
                 ),

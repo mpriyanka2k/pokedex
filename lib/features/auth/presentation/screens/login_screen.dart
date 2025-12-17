@@ -32,6 +32,7 @@ class LoginScreen extends ConsumerWidget {
       }
 
       if (next.isSuccess) {
+        print("next.isSuccess = ${next.isSuccess}");
         CustomSnackBar.show(
           context,
           message: AppLocalizations.of(context)!.loginSuccessful,

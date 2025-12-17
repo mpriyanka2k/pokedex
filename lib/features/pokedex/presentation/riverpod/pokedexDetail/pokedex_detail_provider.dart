@@ -5,6 +5,6 @@ import 'package:pokedex/features/pokedex/presentation/riverpod/pokedexDetail/pok
 import 'package:pokedex/features/pokedex/presentation/riverpod/pokedexDetail/pokedex_detail_state.dart';
 
 final pokedexDetailProvider =
-    StateNotifierProvider<PokedexDetailNotifire, PokedexDetailState>(
-      (ref) => PokedexDetailNotifire(locator<PokedexDetailUsecase>()),
+    StateNotifierProvider.family<PokedexDetailNotifire, PokedexDetailState,String>(
+      (ref,id) => PokedexDetailNotifire(locator<PokedexDetailUsecase>(),id),
     );

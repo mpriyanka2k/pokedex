@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 enum InternetStatus { connected, disconnected }
 
 final connectivityProvider = StreamProvider<InternetStatus>((ref) {
+  
   final connectivity = Connectivity();
 
   return connectivity.onConnectivityChanged.asyncMap((result) async {

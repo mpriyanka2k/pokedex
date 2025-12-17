@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pokedex/core/di/injection.dart';
 import 'package:pokedex/core/hive/hive_services.dart';
 import 'package:pokedex/core/router/app_router.dart';
-import 'package:pokedex/core/theme/app_theme.dart';
-import 'package:pokedex/core/theme/theme_notifier.dart';
+import 'package:pokedex/core/themes/app_theme.dart';
+import 'package:pokedex/core/themes/theme_notifier.dart';
 import 'package:pokedex/l10n/app_local_notifire.dart';
 import 'package:pokedex/l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -16,12 +16,6 @@ Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await init(); 
     await locator<HiveService>().init();
-
-    // locator<HiveService>().register();
-    // await locator<HiveService>().openBox('pokemonBox');
-    // HiveAdapters.register();
-    
-
   runApp(
     const ProviderScope(child: MyApp()),
   );

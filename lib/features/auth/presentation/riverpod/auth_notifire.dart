@@ -13,7 +13,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
   final passwordController = TextEditingController();
 
   void togglePasswordVisibility() {
-    state = state.copyWith(isObscured: !state.isObscured);
+    state = state.copyWith(isObscured: !state.isObscured,isSuccess: false);
   }
 
   Future<void> login() async {

@@ -7,3 +7,4 @@ class PokedexState {
 
   PokedexState({this.loading = false, this.data, this.error});
 }
+
